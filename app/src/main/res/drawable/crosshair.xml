@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Center Dot -->
+    <path
+        android:fillColor="#FF0000"
+        android:pathData="M12,11.5 A0.5,0.5 0,1 1,11.99 11.5 Z" />
+
+    <!-- Top Reticle Line -->
+    <path
+        android:strokeColor="#FF0000"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:pathData="M12,3 L12,8" />
+
+    <!-- Bottom Reticle Line -->
+    <path
+        android:strokeColor="#FF0000"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:pathData="M12,16 L12,21" />
+
+    <!-- Left Reticle Line -->
+    <path
+        android:strokeColor="#FF0000"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:pathData="M3,12 L8,12" />
+
+    <!-- Right Reticle Line -->
+    <path
+        android:strokeColor="#FF0000"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:pathData="M16,12 L21,12" />
+</vector>

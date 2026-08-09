@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">AR Measurement</string>
+    <string name="status_searching">Status: SEARCHING...</string>
+    <string name="aim_and_place_two_points">Aim and place two points</string>
+    <string name="place_point">Place Point</string>
+    <string name="reset">Reset</string>
+    <string name="ar_settings_capabilities"><![CDATA[AR Settings & Capabilities]]></string>
+    <string name="show_tracked_plane_dots">Show Tracked Plane Dots</string>
+    <string name="enable_instant_placement">Enable Instant Placement</string>
+    <string name="hardware_api_capabilities">Hardware / API Capabilities</string>
+    <string name="settings">settings</string>
+</resources>
