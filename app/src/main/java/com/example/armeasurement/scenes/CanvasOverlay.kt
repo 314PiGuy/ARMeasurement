@@ -7,53 +7,41 @@ import android.graphics.Paint
 import android.graphics.PointF
 import android.util.AttributeSet
 import android.view.View
-import androidx.core.graphics.toColorInt
 
 class CanvasOverlay(context: Context, attrs: AttributeSet? = null) : View(context, attrs) {
 
     private val crosshairPaint = Paint().apply {
-        color = Color.WHITE
         strokeWidth = 6f
         style = Paint.Style.STROKE
         isAntiAlias = true
     }
 
-    private val snappedCrosshairPaint = Paint(crosshairPaint).apply {
-        color = Color.GREEN
-        strokeWidth = 8f
-    }
-
-    private val cornerPaint = Paint().apply {
-        color = "#80FFEB3B".toColorInt() // Semi-transparent yellow
+    private val centerPaint = Paint().apply {
         style = Paint.Style.FILL
         isAntiAlias = true
     }
 
     var crosshairPos: PointF? = null
-    var isSnapped: Boolean = false
-    var cornersToDraw: List<PointF> = emptyList()
+    var isReady = false
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        // 1. Draw 2D corners
-        cornersToDraw.forEach { point ->
-            canvas.drawCircle(point.x, point.y, 12f, cornerPaint)
-        }
-
-        // 2. Draw Crosshair
         crosshairPos?.let { center ->
-            val paint = if (isSnapped) snappedCrosshairPaint else crosshairPaint
-            val radius = if (isSnapped) 45f else 35f
+            val color = if (isReady) Color.rgb(0, 230, 118) else Color.WHITE
+            crosshairPaint.color = color
+            crosshairPaint.strokeWidth = if (isReady) 8f else 6f
+            centerPaint.color = color
+            val radius = if (isReady) 45f else 38f
 
-            // Draw center circle
-            canvas.drawCircle(center.x, center.y, radius, paint)
+            canvas.drawCircle(center.x, center.y, radius, crosshairPaint)
+            canvas.drawCircle(center.x, center.y, 6f, centerPaint)
 
-            // Draw tick marks
-            canvas.drawLine(center.x - radius - 15, center.y, center.x - radius + 5, center.y, paint) // Left
-            canvas.drawLine(center.x + radius + 15, center.y, center.x + radius - 5, center.y, paint) // Right
-            canvas.drawLine(center.x, center.y - radius - 15, center.x, center.y - radius + 5, paint) // Top
-            canvas.drawLine(center.x, center.y + radius + 15, center.x, center.y + radius - 5, paint) // Bottom
+            canvas.drawLine(center.x - radius - 15, center.y, center.x - radius + 5, center.y, crosshairPaint)
+            canvas.drawLine(center.x + radius + 15, center.y, center.x + radius - 5, center.y, crosshairPaint)
+            canvas.drawLine(center.x, center.y - radius - 15, center.x, center.y - radius + 5, crosshairPaint)
+            canvas.drawLine(center.x, center.y + radius + 15, center.x, center.y + radius - 5, crosshairPaint)
+
         }
     }
 }

@@ -23,4 +23,3 @@ sceneform = { module = "com.gorisse.thomas.sceneform:sceneform", version.ref = "
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-

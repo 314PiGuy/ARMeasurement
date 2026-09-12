@@ -5,20 +5,21 @@ import com.example.armeasurement.scenes.CanvasOverlay
 
 class CanvasController(private val overlayView: CanvasOverlay) {
 
-    fun updateCrosshair(position: PointF, isSnapped: Boolean) {
-        overlayView.crosshairPos = position
-        overlayView.isSnapped = isSnapped
-        overlayView.invalidate()
-    }
+    fun update(crosshair: PointF, isReady: Boolean) {
+        val previousCrosshair = overlayView.crosshairPos
+        val isUnchanged = previousCrosshair != null &&
+            previousCrosshair.x == crosshair.x &&
+            previousCrosshair.y == crosshair.y &&
+            overlayView.isReady == isReady
+        if (isUnchanged) return
 
-    fun drawCorners(corners2D: List<PointF>) {
-        overlayView.cornersToDraw = corners2D
+        overlayView.crosshairPos = crosshair
+        overlayView.isReady = isReady
         overlayView.invalidate()
     }
 
     fun clear() {
         overlayView.crosshairPos = null
-        overlayView.cornersToDraw = emptyList()
         overlayView.invalidate()
     }
 }

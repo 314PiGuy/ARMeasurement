@@ -10,9 +10,6 @@ import kotlin.math.sqrt
 
 object Geometry {
 
-    /**
-     * Surprisingly, calculates distance between 2 3d points.
-     */
     fun calculateDistance(pose1: Pose, pose2: Pose): Float {
         val dx = pose1.tx() - pose2.tx()
         val dy = pose1.ty() - pose2.ty()
@@ -20,9 +17,6 @@ object Geometry {
         return sqrt((dx * dx + dy * dy + dz * dz).toDouble()).toFloat()
     }
 
-    /**
-     * Yea wonder what this does
-     */
     fun getMidpoint(pose1: Pose, pose2: Pose): Float3 {
         return Float3(
             (pose1.tx() + pose2.tx()) / 2f,
@@ -62,4 +56,27 @@ object Geometry {
             Quaternion(axis.x * inverseS, axis.y * inverseS, axis.z * inverseS, s * 0.5f)
         )
     }
+
+    /**
+     * Polygon with vertices in PERIMETER ORDER (nothing stopping crossing over)
+     */
+    fun calculateArea(poses: List<Pose>): Float? {
+        if (poses.size < 3) return null
+
+        var normalX = 0f
+        var normalY = 0f
+        var normalZ = 0f
+
+        poses.forEachIndexed { index, current ->
+            val next = poses[(index + 1) % poses.size]
+            normalX += (current.ty() - next.ty()) * (current.tz() + next.tz())
+            normalY += (current.tz() - next.tz()) * (current.tx() + next.tx())
+            normalZ += (current.tx() - next.tx()) * (current.ty() + next.ty())
+        }
+
+        return 0.5f * sqrt(
+            (normalX * normalX + normalY * normalY + normalZ * normalZ).toDouble()
+        ).toFloat()
+    }
+
 }

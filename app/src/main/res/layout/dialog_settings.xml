@@ -8,42 +8,30 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ar_settings_capabilities"
+        android:paddingBottom="16dp"
+        android:text="@string/settings"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:paddingBottom="16dp" />
+        android:textStyle="bold" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switchPlaneDots"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/show_tracked_plane_dots"
-        android:paddingVertical="8dp" />
+        android:paddingVertical="8dp"
+        android:text="@string/show_plane_guide" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switchInstantPlacement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/enable_instant_placement"
-        android:paddingVertical="8dp" />
+        android:paddingVertical="8dp"
+        android:text="@string/enable_instant_placement" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#CCCCCC"
-        android:layout_marginVertical="16dp" />
-
-    <TextView
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchDepthOcclusion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hardware_api_capabilities"
-        android:textStyle="bold"
-        android:paddingBottom="8dp" />
-
-    <LinearLayout
-        android:id="@+id/capabilitiesContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" />
+        android:paddingVertical="8dp"
+        android:text="@string/enable_depth_occlusion" />
 
 </LinearLayout>
